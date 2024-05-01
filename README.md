@@ -23,3 +23,6 @@ You'll need to use this in another device, or unenroll.
 ## Credits
 
 - Bromine35
+(doxr) - script development
+- adigitalmoon
+answers
