@@ -18,7 +18,7 @@ Then, click on it. There should be a popup. Type any random thing on any of the 
 
 ### What if Bookmarklets/JS/Devtools are blocked?
 
-You'll need to use this in another device, or unenroll.
+You'll need to use this with another personal device, or unenroll.
 
 ## Credits
 
