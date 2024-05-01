@@ -8,22 +8,39 @@
                 try {
                     const parsedPayload = JSON.parse(arguments[0]);
                     if (parsedPayload && parsedPayload.data && parsedPayload.data.answers) {
-                        if (parsedPayload.data.answers.length == 1) {
-                            console.log("Answer:", parsedPayload.data.answers.answer);
-                            document.getElementById("doxrMenu").innerText = "Answer: " + parsedPayload.data.answers.answer
-                        } else {
-                            console.log("All Answers (womp womp, you need to read JSON):", parsedPayload.data.answers);
-                            document.getElementById("doxrMenu").innerText = "All Answers: " + parsedPayload.data.answers;
+                        console.log("All Answers:", parsedPayload.data.answers);
+                        let secondParse = JSON.parse(parsedPayload.data.answers);
+                        if (secondParse.length == 1) {
+                            document.getElementById("doxrMenu").innerText = "All Answers: " + secondParse[0].answer;
+                        } else if (secondParse.length > 1) {
+                            // Iterate over each answer and concatenate them to the doxrMenu element
+                            let answersText = "";
+                            secondParse.forEach(answer => {
+                                answersText += "All Answers: " + answer.answer + ", ";
+                            });
+                            // Remove the trailing comma and space
+                            document.getElementById("doxrMenu").innerText = answersText.slice(0, -2);
                         }
+                        console.log(secondParse);
+                    } else if (parsedPayload && parsedPayload.data && parsedPayload.data.options) {
+                        console.log("Multi-choice detected.")
+                        let optionsArray = JSON.parse(parsedPayload.data.options)
+                        let correctAnswer;
+                        for (const option of optionsArray) {
+                            if (option.correct === true) {
+                                correctAnswer = option.answer;
+                                break;
+                            }
+                        }
+                        document.getElementById("doxrMenu").innerText = "Answer: " + correctAnswer;
                     }
                 } catch (error) {
-                    console.error("WOMP-WOMP:", error);
+                    console.log(parsedPayload)
+                    console.error("Error:", error);
                 }
                 payload.apply(this, arguments);
             };
         }
-        
-        // Call the original open method
         originalOpen.call(this, method, url, async, user, password);
     };
 })();
@@ -38,6 +55,7 @@
         
         // Find the first element with the class "assignment-sheet-ctn" and append the menu to it
         const assignmentSheetContainer = document.querySelector('.assignment-sheet-ctn');
+      
         if (assignmentSheetContainer) {
             assignmentSheetContainer.appendChild(element);
         } else {
@@ -69,4 +87,4 @@
         });
     };
     
-    footer();
+    footer()
