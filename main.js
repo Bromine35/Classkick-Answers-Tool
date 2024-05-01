@@ -43,8 +43,6 @@
         }
         originalOpen.call(this, method, url, async, user, password);
     };
-})();
-
     // Thank you to gliz for this code:
     function footer() {
         let element = document.createElement('div');
@@ -88,3 +86,4 @@
     };
     
     footer()
+})();
