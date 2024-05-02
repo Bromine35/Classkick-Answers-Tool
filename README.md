@@ -5,7 +5,7 @@ A tool to get Classkick Answers, if you have a homework assignment that allows y
 
 Create a *bookmark*(let), make this the URL:
 ```
-javascript:(function(){fetch('https://raw.githack.com/Bromine35/Classkick-Answers-Tool/main/main.js').then(r=>r.text()).then(t=>eval(t)).catch(e=>console.error('Error executing script:', e))})()
+javascript:(function(){fetch('https://cdn.jsdelivr.net/gh/Bromine35/Classkick-Answers-Tool@main/main.js').then(r=>r.text()).then(t=>eval(t)).catch(e=>console.error('Error executing script:', e))})()
 ```
 
 Then, click on it. There should be a popup. Type any random thing on any of the questions. In a second, the popup should contain the answer to that question.
